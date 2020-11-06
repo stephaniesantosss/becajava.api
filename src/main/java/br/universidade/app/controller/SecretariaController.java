@@ -14,59 +14,58 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.universidade.app.model.Aluno;
-import br.universidade.app.model.Tesouraria;
-import br.universidade.app.service.AlunoService;
-import br.universidade.app.service.TesourariaService;
+
+import br.universidade.app.model.Secretaria;
+import br.universidade.app.service.SecretariaService;
 
 @RestController
-@RequestMapping("/tesourarias")
-public class TesourariaController {
-private final TesourariaService _service;
+@RequestMapping("/secretarias")
+public class SecretariaController {
+private final SecretariaService _service;
 
 @Autowired
-public TesourariaController(TesourariaService service) {
+public SecretariaController(SecretariaService service) {
 	_service = service;
 }
 
 @PostMapping
-public ResponseEntity inserir(@RequestBody Tesouraria tesouraria) {
+public ResponseEntity inserir(@RequestBody Secretaria secretaria) {
     try {
-        _service.inserir(tesouraria);
+        _service.inserir(secretaria);
         return ResponseEntity.status(HttpStatus.CREATED).body("Boleto gerado!");
 
     } catch (Error e) {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Não foi possível gerar o boleto!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Nï¿½o foi possï¿½vel gerar o boleto!");
     }
 }
 
 @GetMapping
 public ResponseEntity listar() {
     try {
-        Iterable<Tesouraria> tesourarias = _service.listar();
-        return ResponseEntity.status(HttpStatus.OK).body(tesourarias);
+        Iterable<Secretaria> secretaria = _service.listar();
+        return ResponseEntity.status(HttpStatus.OK).body(secretaria);
     } catch (Error e) {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Transação não concluida!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Transaï¿½ï¿½o nï¿½o concluida!");
     }
 }
 
 @GetMapping(path = "/{id}")
 public ResponseEntity listarUm(@PathVariable Long id) {
     try {
-        Optional<Tesouraria> tesouraria = _service.listarUm(id);
-        return ResponseEntity.status(HttpStatus.OK).body(tesouraria);
+        Optional<Secretaria> secretaria = _service.listarUm(id);
+        return ResponseEntity.status(HttpStatus.OK).body(secretaria);
     } catch (Error e) {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Transação não concluida!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Transaï¿½ï¿½o nï¿½o concluida!");
     }
 }
 
 @PutMapping(path = "/{id}")
-public ResponseEntity atualizar(@PathVariable Long id, @RequestBody Tesouraria tesouraria) {
+public ResponseEntity atualizar(@PathVariable Long id, @RequestBody Secretaria secretaria) {
     try {
-        _service.atualizar(id, tesouraria);
+        _service.atualizar(id, secretaria);
         return ResponseEntity.status(HttpStatus.OK).body("Pagamento concluido!!!");
     } catch (Error e) {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Pagamento ão efetuado!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Pagamento ï¿½o efetuado!");
     }
 }
 
@@ -74,9 +73,9 @@ public ResponseEntity atualizar(@PathVariable Long id, @RequestBody Tesouraria t
 public ResponseEntity excluir(@PathVariable Long id) {
     try {
         _service.excluir(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Transação cancelada!!!");
+        return ResponseEntity.status(HttpStatus.OK).body("Transaï¿½ï¿½o cancelada!!!");
     } catch (Error e) {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Não foi possivel cancelar!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Nï¿½o foi possivel cancelar!");
     }
 }
 

@@ -6,20 +6,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.universidade.app.model.Tesouraria;
-import br.universidade.app.repository.TesourariaRepository;
+import br.universidade.app.model.Secretaria;
+import br.universidade.app.repository.SecretariaRepository;
 
 @Service
-public class TesourariaService  {
+public class SecretariaService  {
 	
-	final TesourariaRepository _repository;
+	final SecretariaRepository _repository;
 	
 	@Autowired
-	public TesourariaService(TesourariaRepository repository) {
+	public SecretariaService(SecretariaRepository repository) {
 		_repository = repository;
 	}	
 	
-	public void inserir(Tesouraria tesouraria) {
+	public void inserir(Secretaria tesouraria) {
 		tesouraria.setId(new Long(0));
 		_repository.save(tesouraria);		
 	}
@@ -28,16 +28,16 @@ public class TesourariaService  {
 		_repository.deleteById(Id);
 	}
 		
-	public void atualizar (Long Id, Tesouraria tesouraria) {
+	public void atualizar (Long Id, Secretaria tesouraria) {
 		tesouraria.setId(Id);
 		_repository.save(tesouraria);
 	}
 	
-	public List<Tesouraria> listar(){	
+	public List<Secretaria> listar(){	
 		return _repository.findAll();
 	}
 	
-	public Optional<Tesouraria> listarUm(Long Id){	
+	public Optional<Secretaria> listarUm(Long Id){	
 		return _repository.findById(Id);
 	}
 	
